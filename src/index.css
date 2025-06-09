@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,5 +6,106 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Roboto', system-ui, sans-serif;
+}
+
+/* Custom PropertyRadar-style components */
+.pr-button-primary {
+  background: linear-gradient(135deg, #1f77b8 0%, #45a6dd 50%, #8fe7ff 100%);
+  color: white;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px -3px rgba(31, 119, 184, 0.1), 0 4px 6px -2px rgba(31, 119, 184, 0.05);
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.pr-button-primary:hover {
+  box-shadow: 0 20px 25px -5px rgba(31, 119, 184, 0.1), 0 10px 10px -5px rgba(31, 119, 184, 0.04);
+  transform: scale(1.05);
+}
+
+.pr-button-secondary {
+  background: white;
+  color: #1f77b8;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  border: 2px solid #b9e6fe;
+  transition: all 0.3s ease;
+}
+
+.pr-button-secondary:hover {
+  border-color: #38bdf8;
+}
+
+.pr-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -3px rgba(31, 119, 184, 0.1), 0 4px 6px -2px rgba(31, 119, 184, 0.05);
+  transition: all 0.3s ease;
+}
+
+.pr-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(31, 119, 184, 0.1), 0 10px 10px -5px rgba(31, 119, 184, 0.04);
+}
+
+.pr-card-hover {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -3px rgba(31, 119, 184, 0.1), 0 4px 6px -2px rgba(31, 119, 184, 0.05);
+  transition: all 0.3s ease;
+}
+
+.pr-card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(31, 119, 184, 0.1), 0 10px 10px -5px rgba(31, 119, 184, 0.04);
+  transform: scale(1.05);
+}
+
+.pr-progress-bar {
+  background: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.pr-progress-fill {
+  background: linear-gradient(135deg, #1f77b8 0%, #45a6dd 50%, #8fe7ff 100%);
+  height: 100%;
+  transition: all 0.5s ease-out;
+}
+
+.pr-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pr-badge-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.pr-badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.pr-badge-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.pr-badge-primary {
+  background: #e0f3fe;
+  color: #075985;
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

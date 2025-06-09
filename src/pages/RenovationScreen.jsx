@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import useGameStore from '../store/gameStore'
 import RoomDropZone from '../components/RoomDropZone'
 import UpgradeCard from '../components/UpgradeCard'
+import StatsPanel from '../components/StatsPanel'
 
 function RenovationScreen() {
   const { 
@@ -52,8 +53,8 @@ function RenovationScreen() {
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen p-4 md:p-8 pt-24" style={{ background: 'linear-gradient(135deg, #8fe7ff 0%, #45a6dd 50%, #1f77b8 100%)' }}>
+      <div className="max-w-8xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
@@ -61,69 +62,90 @@ function RenovationScreen() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-            Plan Your Renovation
-          </h1>
-          <p className="text-lg text-gray-600 mb-4">
+          <div className="inline-flex items-center space-x-3 mb-6">
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-primary-600 text-xl font-bold">🔨</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-black text-white">
+              Design Your Renovation
+            </h1>
+          </div>
+          <p className="text-xl text-white/80 mb-2">
             {currentProperty.address}
           </p>
-          
-          {/* Live Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-            <div className="bg-white rounded-lg p-4 shadow-lg">
-              <div className="text-2xl font-bold text-red-600">{formatCurrency(totalCost)}</div>
-              <div className="text-sm text-gray-600">Total Cost</div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-lg">
-              <div className="text-2xl font-bold text-blue-600">{totalTime} days</div>
-              <div className="text-sm text-gray-600">Timeline</div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-lg">
-              <div className="text-2xl font-bold text-green-600">{calculatedROI.toFixed(1)}%</div>
-              <div className="text-sm text-gray-600">ROI</div>
-            </div>
-          </div>
+          <p className="text-white/60">
+            Drag upgrades to rooms or click to select • Watch your ROI change in real-time
+          </p>
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid xl:grid-cols-4 gap-8">
+          
+          {/* Stats Panel */}
+          <div className="xl:col-span-1">
+            <StatsPanel />
+          </div>
           
           {/* Drop Zones Section */}
-          <div className="lg:col-span-2">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Your Renovation Plan</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {Object.entries(currentProperty.rooms).map(([roomType, roomData]) => (
-                <RoomDropZone
-                  key={roomType}
-                  roomType={roomType}
-                  roomData={roomData}
-                  selectedUpgrade={selectedUpgrades[roomType]}
-                />
-              ))}
-            </div>
+          <div className="xl:col-span-2">
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="text-3xl mr-3">🏗️</span>
+                Your Renovation Plan
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {Object.entries(currentProperty.rooms).map(([roomType, roomData]) => (
+                  <RoomDropZone
+                    key={roomType}
+                    roomType={roomType}
+                    roomData={roomData}
+                    selectedUpgrade={selectedUpgrades[roomType]}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           {/* Upgrade Options Section */}
-          <div className="bg-white rounded-xl p-6 shadow-xl h-fit">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Upgrade Options</h2>
-            
-            {Object.entries(currentProperty.rooms).map(([roomType, roomData]) => (
-              <div key={roomType} className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-2">
-                  {getRoomName(roomType)}
-                </h3>
-                <div className="space-y-3">
-                  {roomData.repairOptions.map((upgrade, index) => (
-                    <UpgradeCard
-                      key={index}
-                      upgrade={upgrade}
-                      roomType={roomType}
-                      onSelect={handleUpgradeSelect}
-                    />
-                  ))}
+          <div className="xl:col-span-1">
+            <motion.div
+              className="pr-card p-6 h-fit max-h-screen overflow-y-auto"
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span className="text-2xl mr-2">🛠️</span>
+                Upgrade Options
+              </h2>
+              
+              {Object.entries(currentProperty.rooms).map(([roomType, roomData]) => (
+                <div key={roomType} className="mb-8">
+                  <h3 className="text-lg font-bold text-gray-700 mb-4 border-b border-gray-200 pb-2 flex items-center">
+                    <span className="mr-2">
+                      {roomType === 'kitchen' ? '🍳' : 
+                       roomType === 'bathroom' ? '🛁' : 
+                       roomType === 'exterior' ? '🏡' : '⭐'}
+                    </span>
+                    {getRoomName(roomType)}
+                  </h3>
+                  <div className="space-y-3">
+                    {roomData.repairOptions.map((upgrade, index) => (
+                      <UpgradeCard
+                        key={index}
+                        upgrade={upgrade}
+                        roomType={roomType}
+                        onSelect={handleUpgradeSelect}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </motion.div>
           </div>
         </div>
 
@@ -131,40 +153,50 @@ function RenovationScreen() {
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex justify-between items-center mt-12 max-w-4xl mx-auto"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex justify-between items-center mt-12"
         >
           <button
             onClick={() => setCurrentScreen('property')}
-            className="text-gray-500 hover:text-gray-700 transition-colors duration-200 font-medium"
+            className="text-white/60 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-2"
           >
-            ← Back to Property
+            <span>←</span>
+            <span>Back to Property</span>
           </button>
 
           <motion.button
             onClick={handleContinueToSummary}
             disabled={Object.keys(selectedUpgrades).length === 0}
-            className={`px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 ${
+            className={`pr-button-primary text-xl font-bold ${
               Object.keys(selectedUpgrades).length === 0
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg hover:shadow-xl'
+                ? 'opacity-50 cursor-not-allowed'
+                : 'animate-glow'
             }`}
-            whileHover={Object.keys(selectedUpgrades).length > 0 ? { scale: 1.05 } : {}}
-            whileTap={Object.keys(selectedUpgrades).length > 0 ? { scale: 0.95 } : {}}
+            whileHover={Object.keys(selectedUpgrades).length > 0 ? { scale: 1.05, y: -2 } : {}}
+            whileTap={Object.keys(selectedUpgrades).length > 0 ? { scale: 0.98 } : {}}
           >
-            See My Results
+            <span className="flex items-center space-x-3">
+              <span>📊</span>
+              <span>See My Results</span>
+              <span>🏆</span>
+            </span>
           </motion.button>
         </motion.div>
 
-        {/* Instructions */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center mt-8 text-gray-500 text-sm"
-        >
-          <p>💡 Drag upgrades to rooms or click to select. Watch your ROI change in real-time!</p>
-        </motion.div>
+        {/* Gamification Hint */}
+        {Object.keys(selectedUpgrades).length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            className="text-center mt-8"
+          >
+            <div className="glassmorphism rounded-pr px-6 py-4 inline-flex items-center space-x-3">
+              <span className="text-2xl animate-bounce">👆</span>
+              <span className="text-white font-medium">Select at least one upgrade to continue</span>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   )

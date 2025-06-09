@@ -13,6 +13,20 @@ const useGameStore = create((set, get) => ({
   userEmail: '',
   gameCompleted: false,
   
+  // Gamification
+  playerLevel: 1,
+  playerXP: 0,
+  achievements: [],
+  unlockedBadges: [],
+  gameStats: {
+    propertiesFlipped: 0,
+    totalProfit: 0,
+    averageROI: 0,
+    fastestFlip: Infinity,
+    highestROI: 0,
+    upgradesUsed: 0
+  },
+  
   // Actions
   setCurrentScreen: (screen) => set({ currentScreen: screen }),
   
@@ -74,18 +88,159 @@ const useGameStore = create((set, get) => ({
   
   setUserEmail: (email) => set({ userEmail: email }),
   
-  completeGame: () => set({ gameCompleted: true }),
+  completeGame: () => {
+    const state = get()
+    const profit = state.getTotalProfit()
+    const roi = state.calculatedROI
+    
+    // Update game stats
+    const newStats = {
+      ...state.gameStats,
+      propertiesFlipped: state.gameStats.propertiesFlipped + 1,
+      totalProfit: state.gameStats.totalProfit + profit,
+      averageROI: ((state.gameStats.averageROI * state.gameStats.propertiesFlipped) + roi) / (state.gameStats.propertiesFlipped + 1),
+      fastestFlip: Math.min(state.gameStats.fastestFlip, state.totalTime),
+      highestROI: Math.max(state.gameStats.highestROI, roi),
+      upgradesUsed: state.gameStats.upgradesUsed + Object.keys(state.selectedUpgrades).length
+    }
+    
+    // Check for achievements
+    const newAchievements = get().checkAchievements(roi, state.totalTime, profit, newStats)
+    
+    set({ 
+      gameCompleted: true, 
+      gameStats: newStats,
+      achievements: [...state.achievements, ...newAchievements]
+    })
+  },
   
-  resetGame: () => set({
-    currentScreen: 'welcome',
-    currentProperty: null,
-    selectedUpgrades: {},
-    totalCost: 0,
-    totalTime: 0,
-    calculatedROI: 0,
-    userEmail: '',
-    gameCompleted: false
-  }),
+  resetGame: () => {
+    const state = get()
+    set({
+      currentScreen: 'welcome',
+      currentProperty: null,
+      selectedUpgrades: {},
+      totalCost: 0,
+      totalTime: 0,
+      calculatedROI: 0,
+      userEmail: '',
+      gameCompleted: false
+      // Keep gamification data persistent
+    })
+  },
+  
+  // Gamification actions
+  addXP: (amount) => {
+    const state = get()
+    const newXP = state.playerXP + amount
+    const newLevel = Math.floor(newXP / 1000) + 1
+    
+    set({ 
+      playerXP: newXP,
+      playerLevel: newLevel
+    })
+    
+    return newLevel > state.playerLevel // Level up occurred
+  },
+  
+  unlockAchievement: (achievement) => {
+    const state = get()
+    if (!state.achievements.find(a => a.id === achievement.id)) {
+      set({ 
+        achievements: [...state.achievements, { ...achievement, unlockedAt: new Date() }]
+      })
+      get().addXP(achievement.points || 100)
+      return true
+    }
+    return false
+  },
+  
+  checkAchievements: (roi, time, profit, stats) => {
+    const achievements = []
+    
+    // ROI-based achievements
+    if (roi >= 30) achievements.push({
+      id: 'roi_master',
+      title: 'ROI Master',
+      description: 'Achieve 30%+ ROI on a single flip',
+      icon: '🔥',
+      rarity: 5,
+      points: 500
+    })
+    else if (roi >= 25) achievements.push({
+      id: 'deal_destroyer',
+      title: 'Deal Destroyer',
+      description: 'Achieve 25%+ ROI on a flip',
+      icon: '💥',
+      rarity: 4,
+      points: 300
+    })
+    else if (roi >= 20) achievements.push({
+      id: 'savvy_flipper',
+      title: 'Savvy Flipper',
+      description: 'Achieve 20%+ ROI on a flip',
+      icon: '🚀',
+      rarity: 3,
+      points: 200
+    })
+    
+    // Time-based achievements
+    if (time <= 45) achievements.push({
+      id: 'speed_demon',
+      title: 'Speed Demon',
+      description: 'Complete a flip in under 45 days',
+      icon: '⚡',
+      rarity: 4,
+      points: 250
+    })
+    else if (time <= 60) achievements.push({
+      id: 'quick_flipper',
+      title: 'Quick Flipper',
+      description: 'Complete a flip in under 60 days',
+      icon: '🏃',
+      rarity: 3,
+      points: 150
+    })
+    
+    // Profit-based achievements
+    if (profit >= 100000) achievements.push({
+      id: 'six_figure_flip',
+      title: 'Six Figure Flip',
+      description: 'Make $100K+ profit on a single flip',
+      icon: '💰',
+      rarity: 5,
+      points: 400
+    })
+    else if (profit >= 50000) achievements.push({
+      id: 'big_profit',
+      title: 'Big Profit',
+      description: 'Make $50K+ profit on a flip',
+      icon: '💵',
+      rarity: 3,
+      points: 200
+    })
+    
+    // Milestone achievements
+    if (stats.propertiesFlipped === 1) achievements.push({
+      id: 'first_flip',
+      title: 'First Flip',
+      description: 'Complete your first renovation',
+      icon: '🏠',
+      rarity: 1,
+      points: 100
+    })
+    
+    if (stats.propertiesFlipped === 5) achievements.push({
+      id: 'serial_flipper',
+      title: 'Serial Flipper',
+      description: 'Complete 5 renovations',
+      icon: '🔄',
+      rarity: 3,
+      points: 300
+    })
+    
+    return achievements
+  },
   
   // Helper functions
   getInvestorRank: () => {

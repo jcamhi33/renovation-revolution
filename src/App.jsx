@@ -6,6 +6,7 @@ import WelcomeScreen from './pages/WelcomeScreen'
 import PropertyScreen from './pages/PropertyScreen'
 import RenovationScreen from './pages/RenovationScreen'
 import SummaryScreen from './pages/SummaryScreen'
+import GameProgress from './components/GameProgress'
 
 function App() {
   const currentScreen = useGameStore((state) => state.currentScreen)
@@ -27,7 +28,10 @@ function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #8fe7ff 0%, #45a6dd 50%, #1f77b8 100%)' }}>
+        {/* Game Progress Bar - Show on all screens except welcome */}
+        {currentScreen !== 'welcome' && <GameProgress />}
+        
         <AnimatePresence mode="wait">
           <motion.div
             key={currentScreen}
