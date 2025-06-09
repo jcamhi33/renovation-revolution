@@ -129,7 +129,7 @@ function SummaryScreen() {
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-8 pt-24" style={{ background: 'linear-gradient(135deg, #8fe7ff 0%, #45a6dd 50%, #1f77b8 100%)' }}>
+    <div className="min-h-screen p-6 md:p-10 pt-28" style={{ background: 'linear-gradient(135deg, #8fe7ff 0%, #45a6dd 50%, #1f77b8 100%)' }}>
       <div className="max-w-6xl mx-auto">
         {/* Achievement Popup */}
         <AchievementBadge 
@@ -143,20 +143,20 @@ function SummaryScreen() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center space-x-3 mb-6">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <span className="text-3xl">{getRankEmoji(getInvestorRank())}</span>
+          <div className="inline-flex items-center space-x-4 mb-8">
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-4xl">{getRankEmoji(getInvestorRank())}</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-black text-white">
               Mission Complete!
             </h1>
           </div>
-          <p className="text-xl text-white/80 mb-2">
+          <p className="text-xl md:text-2xl text-white/80 mb-6">
             {currentProperty.address}
           </p>
-          <div className="flex items-center justify-center space-x-6 text-white/60">
+          <div className="flex items-center justify-center space-x-8 text-white/60 text-lg">
             <div className="flex items-center space-x-2">
               <span>🏅</span>
               <span>Level {playerLevel}</span>
@@ -175,29 +175,29 @@ function SummaryScreen() {
         </motion.div>
 
         {/* Results Summary */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid lg:grid-cols-2 gap-10 mb-12">
           {/* Investor Rank Card */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="pr-card p-8 text-center relative overflow-hidden"
+            className="pr-card p-10 text-center relative overflow-hidden"
             style={{ background: 'linear-gradient(135deg, #1f77b8 0%, #45a6dd 50%, #8fe7ff 100%)' }}
           >
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="relative z-10 text-white">
               <motion.div 
-                className="text-8xl mb-4"
+                className="text-8xl md:text-9xl mb-6"
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 {getRankEmoji(getInvestorRank())}
               </motion.div>
-              <h2 className="text-3xl font-bold mb-2">Achievement Unlocked!</h2>
-              <div className="text-2xl font-black mb-4 bg-white/20 rounded-pr px-4 py-2 inline-block">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Achievement Unlocked!</h2>
+              <div className="text-2xl md:text-3xl font-black mb-6 bg-white/20 rounded-pr px-6 py-3 inline-block">
                 {getInvestorRank()}
               </div>
-              <p className="text-white/90 text-lg">
+              <p className="text-white/90 text-lg md:text-xl">
                 You've mastered this renovation challenge
               </p>
             </div>
@@ -208,37 +208,37 @@ function SummaryScreen() {
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="pr-card p-8"
+            className="pr-card p-10"
           >
-            <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-              <span className="text-3xl mr-3">📊</span>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 flex items-center">
+              <span className="text-4xl mr-4">📊</span>
               Performance Metrics
             </h3>
             
-            <div className="space-y-6">
-              <div className="text-center p-6 bg-gradient-to-r from-success-50 to-success-100 rounded-xl border border-success-200">
-                <div className="text-4xl font-black text-success-700 mb-2">
+            <div className="space-y-8">
+              <div className="text-center p-8 bg-gradient-to-r from-success-50 to-success-100 rounded-xl border border-success-200">
+                <div className="text-4xl md:text-5xl font-black text-success-700 mb-3">
                   {calculatedROI.toFixed(1)}%
                 </div>
-                <div className="text-success-600 font-medium">Return on Investment</div>
+                <div className="text-success-600 font-medium text-lg">Return on Investment</div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
-                  <div className="text-2xl font-bold text-gray-800">{totalTime}</div>
-                  <div className="text-sm text-gray-600">Days Timeline</div>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center p-6 bg-gray-50 rounded-xl">
+                  <div className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{totalTime}</div>
+                  <div className="text-base text-gray-600">Days Timeline</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
-                  <div className="text-2xl font-bold text-gray-800">{Object.keys(selectedUpgrades).length}</div>
-                  <div className="text-sm text-gray-600">Upgrades</div>
+                <div className="text-center p-6 bg-gray-50 rounded-xl">
+                  <div className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{Object.keys(selectedUpgrades).length}</div>
+                  <div className="text-base text-gray-600">Upgrades</div>
                 </div>
               </div>
               
-              <div className="text-center p-4 bg-primary-50 rounded-xl border border-primary-200">
-                <div className="text-2xl font-bold text-primary-700">
+              <div className="text-center p-6 bg-primary-50 rounded-xl border border-primary-200">
+                <div className="text-2xl md:text-3xl font-bold text-primary-700 mb-2">
                   {formatCurrency(getTotalProfit())}
                 </div>
-                <div className="text-primary-600 font-medium">Total Profit</div>
+                <div className="text-primary-600 font-medium text-lg">Total Profit</div>
               </div>
             </div>
           </motion.div>
@@ -249,76 +249,76 @@ function SummaryScreen() {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="pr-card p-8 mb-8"
+          className="pr-card p-10 mb-12"
         >
-          <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-3xl mr-3">📋</span>
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 flex items-center">
+            <span className="text-4xl mr-4">📋</span>
             Investment Breakdown
           </h3>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-gradient-to-br from-error-50 to-error-100 rounded-xl p-6 border border-error-200">
+          <div className="grid md:grid-cols-3 gap-8 mb-10">
+            <div className="bg-gradient-to-br from-error-50 to-error-100 rounded-xl p-8 border border-error-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-medium text-error-600 mb-1">Purchase Price</div>
-                  <div className="text-2xl font-black text-error-700">
+                  <div className="text-sm font-medium text-error-600 mb-2">Purchase Price</div>
+                  <div className="text-2xl md:text-3xl font-black text-error-700">
                     {formatCurrency(currentProperty.asIsValue)}
                   </div>
                 </div>
-                <div className="text-3xl">💸</div>
+                <div className="text-4xl">💸</div>
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-warning-50 to-warning-100 rounded-xl p-6 border border-warning-200">
+            <div className="bg-gradient-to-br from-warning-50 to-warning-100 rounded-xl p-8 border border-warning-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-medium text-warning-600 mb-1">Renovation Cost</div>
-                  <div className="text-2xl font-black text-warning-700">
+                  <div className="text-sm font-medium text-warning-600 mb-2">Renovation Cost</div>
+                  <div className="text-2xl md:text-3xl font-black text-warning-700">
                     {formatCurrency(totalCost)}
                   </div>
                 </div>
-                <div className="text-3xl">🔨</div>
+                <div className="text-4xl">🔨</div>
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-success-50 to-success-100 rounded-xl p-6 border border-success-200">
+            <div className="bg-gradient-to-br from-success-50 to-success-100 rounded-xl p-8 border border-success-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-medium text-success-600 mb-1">Final Sale Price</div>
-                  <div className="text-2xl font-black text-success-700">
+                  <div className="text-sm font-medium text-success-600 mb-2">Final Sale Price</div>
+                  <div className="text-2xl md:text-3xl font-black text-success-700">
                     {formatCurrency(getFinalARV())}
                   </div>
                 </div>
-                <div className="text-3xl">💰</div>
+                <div className="text-4xl">💰</div>
               </div>
             </div>
           </div>
 
           {/* Renovation Summary */}
-          <div className="mb-8">
-            <h4 className="text-lg font-bold text-gray-800 mb-4">Your Renovation Choices</h4>
-            <div className="grid md:grid-cols-2 gap-4">
+          <div className="mb-10">
+            <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-6">Your Renovation Choices</h4>
+            <div className="grid md:grid-cols-2 gap-6">
               {Object.entries(selectedUpgrades).map(([roomType, upgrade]) => (
                 <motion.div 
                   key={roomType} 
-                  className="bg-primary-50 rounded-xl p-4 border border-primary-200"
+                  className="bg-primary-50 rounded-xl p-6 border border-primary-200"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <h5 className="font-bold text-primary-800 flex items-center">
-                        <span className="mr-2">
+                      <h5 className="font-bold text-primary-800 flex items-center mb-2">
+                        <span className="mr-3 text-2xl">
                           {roomType === 'kitchen' ? '🍳' : 
                            roomType === 'bathroom' ? '🛁' : 
                            roomType === 'exterior' ? '🏡' : '⭐'}
                         </span>
                         {roomType.charAt(0).toUpperCase() + roomType.slice(1)}
                       </h5>
-                      <p className="text-primary-600 text-sm">{upgrade.name}</p>
+                      <p className="text-primary-600 text-base">{upgrade.name}</p>
                     </div>
                     <div className="text-right">
-                      <div className="font-bold text-primary-800">{formatCurrency(upgrade.cost)}</div>
-                      <div className="text-xs text-success-600 font-medium">+{(upgrade.roiBoost * 100).toFixed(1)}% ROI</div>
+                      <div className="font-bold text-primary-800 text-lg mb-1">{formatCurrency(upgrade.cost)}</div>
+                      <div className="text-sm text-success-600 font-medium">+{(upgrade.roiBoost * 100).toFixed(1)}% ROI</div>
                     </div>
                   </div>
                 </motion.div>
@@ -328,26 +328,26 @@ function SummaryScreen() {
 
           {/* New Achievements */}
           {newAchievements.length > 0 && (
-            <div className="mb-8">
-              <h4 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
-                <span className="text-2xl mr-2">🏆</span>
+            <div className="mb-10">
+              <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <span className="text-3xl mr-3">🏆</span>
                 New Achievements Unlocked
               </h4>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-3 gap-6">
                 {newAchievements.map((achievement, index) => (
                   <motion.div
                     key={achievement.id}
-                    className="bg-gradient-to-br from-accent-50 to-accent-100 rounded-xl p-4 border border-accent-200 text-center"
+                    className="bg-gradient-to-br from-accent-50 to-accent-100 rounded-xl p-6 border border-accent-200 text-center"
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ delay: index * 0.2, duration: 0.5 }}
                   >
-                    <div className="text-3xl mb-2">{achievement.icon}</div>
-                    <div className="font-bold text-accent-800 text-sm">{achievement.title}</div>
-                    <div className="text-accent-600 text-xs">{achievement.description}</div>
-                    <div className="flex items-center justify-center mt-2 space-x-1">
+                    <div className="text-4xl mb-3">{achievement.icon}</div>
+                    <div className="font-bold text-accent-800 text-base mb-2">{achievement.title}</div>
+                    <div className="text-accent-600 text-sm leading-relaxed">{achievement.description}</div>
+                    <div className="flex items-center justify-center mt-3 space-x-1">
                       {[...Array(achievement.rarity || 3)].map((_, i) => (
-                        <span key={i} className="text-yellow-400 text-sm">⭐</span>
+                        <span key={i} className="text-yellow-400 text-base">⭐</span>
                       ))}
                     </div>
                   </motion.div>
@@ -363,45 +363,45 @@ function SummaryScreen() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="pr-card p-8"
+            className="pr-card p-10"
           >
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white text-2xl">📧</span>
+            <div className="text-center mb-10">
+              <div className="w-20 h-20 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-white text-3xl">📧</span>
               </div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
                 Get Your Investment Report
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Receive a detailed breakdown of your results plus actionable tips for your next property flip!
               </p>
             </div>
 
-            <form onSubmit={handleEmailSubmit} className="max-w-lg mx-auto">
-              <div className="mb-6">
+            <form onSubmit={handleEmailSubmit} className="max-w-2xl mx-auto">
+              <div className="mb-8">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
                   required
-                  className="w-full px-6 py-4 border-2 border-gray-300 rounded-pr text-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all duration-200"
+                  className="w-full px-8 py-6 border-2 border-gray-300 rounded-pr text-lg md:text-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all duration-200"
                 />
               </div>
 
-              <div className="mb-8">
+              <div className="mb-10">
                 <label className="flex items-start text-gray-700 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={wantsTrial}
                     onChange={(e) => setWantsTrial(e.target.checked)}
-                    className="mr-4 mt-1 w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                    className="mr-6 mt-1 w-6 h-6 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
                   />
                   <div>
-                    <span className="font-medium">
+                    <span className="font-medium text-lg mb-2 block">
                       I'm interested in starting a free trial of PropertyRadar
                     </span>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-base text-gray-500 leading-relaxed">
                       Get access to real market data and property insights for your next investment
                     </p>
                   </div>
@@ -411,11 +411,11 @@ function SummaryScreen() {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full pr-button-primary text-xl font-bold disabled:opacity-50"
+                className="w-full pr-button-primary text-xl md:text-2xl font-bold disabled:opacity-50 py-6"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="flex items-center justify-center space-x-3">
+                <span className="flex items-center justify-center space-x-4">
                   {isSubmitting ? (
                     <>
                       <span className="animate-spin">⏳</span>
@@ -437,25 +437,25 @@ function SummaryScreen() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="pr-card p-8 text-center relative overflow-hidden"
+            className="pr-card p-10 text-center relative overflow-hidden"
             style={{ background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)' }}
           >
             <motion.div
-              className="text-8xl mb-6"
+              className="text-8xl md:text-9xl mb-8"
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               ✅
             </motion.div>
-            <h2 className="text-3xl font-bold text-success-800 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-success-800 mb-6">
               Report Sent Successfully!
             </h2>
-            <p className="text-lg text-success-700 mb-6 max-w-md mx-auto">
+            <p className="text-lg md:text-xl text-success-700 mb-8 max-w-2xl mx-auto leading-relaxed">
               Check your email for your personalized investment report and game results.
             </p>
             {wantsTrial && (
-              <div className="bg-white/50 rounded-pr px-6 py-3 inline-block">
-                <p className="text-success-700 font-medium">
+              <div className="bg-white/50 rounded-pr px-8 py-4 inline-block">
+                <p className="text-success-700 font-medium text-lg">
                   🎯 We'll also be in touch about your PropertyRadar free trial!
                 </p>
               </div>
@@ -468,15 +468,15 @@ function SummaryScreen() {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.0 }}
-          className="flex justify-center space-x-6 mt-12"
+          className="flex justify-center space-x-8 mt-16"
         >
           <motion.button
             onClick={handlePlayAgain}
-            className="pr-button-primary text-lg font-bold"
+            className="pr-button-primary text-lg md:text-xl font-bold px-8 py-4"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="flex items-center space-x-2">
+            <span className="flex items-center space-x-3">
               <span>🎮</span>
               <span>Play Again</span>
             </span>
@@ -484,11 +484,11 @@ function SummaryScreen() {
           
           <motion.button
             onClick={() => setCurrentScreen('renovation')}
-            className="pr-button-secondary text-lg font-bold"
+            className="pr-button-secondary text-lg md:text-xl font-bold px-8 py-4"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="flex items-center space-x-2">
+            <span className="flex items-center space-x-3">
               <span>🔧</span>
               <span>Adjust Plan</span>
             </span>
@@ -500,18 +500,18 @@ function SummaryScreen() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
-          <div className="glassmorphism rounded-pr px-8 py-6 inline-flex items-center space-x-4">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <span className="text-primary-600 font-black text-2xl">PR</span>
+          <div className="glassmorphism rounded-pr px-10 py-8 inline-flex items-center space-x-6">
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-primary-600 font-black text-3xl">PR</span>
             </div>
             <div className="text-left">
-              <div className="text-white font-bold text-lg">Ready to flip real properties?</div>
-              <div className="text-white/80">Start your PropertyRadar free trial today</div>
+              <div className="text-white font-bold text-xl mb-2">Ready to flip real properties?</div>
+              <div className="text-white/80 text-lg">Start your PropertyRadar free trial today</div>
             </div>
             <motion.button
-              className="bg-white text-primary-600 px-6 py-3 rounded-pr font-bold hover:bg-gray-50 transition-colors duration-200"
+              className="bg-white text-primary-600 px-8 py-4 rounded-pr font-bold hover:bg-gray-50 transition-colors duration-200 text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
