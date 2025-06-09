@@ -1,0 +1,143 @@
+[
+  {
+    "id": 1,
+    "address": "1247 Maple Street, Sacramento, CA 95834",
+    "yearBuilt": 1987,
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1450,
+    "asIsValue": 285000,
+    "repairBudget": 45000,
+    "afterRepairValue": 385000,
+    "estimatedRepairTime": 90,
+    "description": "Single-story ranch home with original hardwood floors and spacious backyard. Needs kitchen and bathroom updates.",
+    "rooms": {
+      "kitchen": {
+        "currentCondition": "outdated",
+        "repairOptions": [
+          { "name": "Basic Refresh", "cost": 8000, "timeAdded": 14, "roiBoost": 0.15 },
+          { "name": "Mid-Range Remodel", "cost": 15000, "timeAdded": 21, "roiBoost": 0.25 },
+          { "name": "High-End Renovation", "cost": 25000, "timeAdded": 35, "roiBoost": 0.35 }
+        ]
+      },
+      "bathroom": {
+        "currentCondition": "dated",
+        "repairOptions": [
+          { "name": "Cosmetic Updates", "cost": 3500, "timeAdded": 7, "roiBoost": 0.10 },
+          { "name": "Full Renovation", "cost": 12000, "timeAdded": 18, "roiBoost": 0.20 },
+          { "name": "Luxury Upgrade", "cost": 18000, "timeAdded": 25, "roiBoost": 0.28 }
+        ]
+      },
+      "exterior": {
+        "currentCondition": "fair",
+        "repairOptions": [
+          { "name": "Paint & Landscaping", "cost": 4000, "timeAdded": 10, "roiBoost": 0.12 },
+          { "name": "Complete Curb Appeal", "cost": 8500, "timeAdded": 18, "roiBoost": 0.18 },
+          { "name": "Premium Exterior", "cost": 15000, "timeAdded": 28, "roiBoost": 0.25 }
+        ]
+      },
+      "bonus": {
+        "currentCondition": "opportunity",
+        "repairOptions": [
+          { "name": "Skip Tracing Magic", "cost": 500, "timeAdded": 2, "roiBoost": 0.05, "description": "Find motivated sellers faster" },
+          { "name": "Market Automation", "cost": 1000, "timeAdded": 3, "roiBoost": 0.08, "description": "Automate your deal pipeline" },
+          { "name": "Investor Network", "cost": 2000, "timeAdded": 5, "roiBoost": 0.12, "description": "Connect with cash buyers" }
+        ]
+      }
+    }
+  },
+  {
+    "id": 2,
+    "address": "856 Oak Avenue, Fresno, CA 93720",
+    "yearBuilt": 1992,
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1850,
+    "asIsValue": 320000,
+    "repairBudget": 55000,
+    "afterRepairValue": 445000,
+    "estimatedRepairTime": 105,
+    "description": "Two-story family home with vaulted ceilings and master suite. Requires significant kitchen and flooring work.",
+    "rooms": {
+      "kitchen": {
+        "currentCondition": "poor",
+        "repairOptions": [
+          { "name": "Basic Refresh", "cost": 12000, "timeAdded": 18, "roiBoost": 0.18 },
+          { "name": "Mid-Range Remodel", "cost": 22000, "timeAdded": 28, "roiBoost": 0.28 },
+          { "name": "High-End Renovation", "cost": 35000, "timeAdded": 42, "roiBoost": 0.38 }
+        ]
+      },
+      "bathroom": {
+        "currentCondition": "average",
+        "repairOptions": [
+          { "name": "Cosmetic Updates", "cost": 5000, "timeAdded": 10, "roiBoost": 0.12 },
+          { "name": "Full Renovation", "cost": 15000, "timeAdded": 22, "roiBoost": 0.22 },
+          { "name": "Luxury Upgrade", "cost": 25000, "timeAdded": 32, "roiBoost": 0.32 }
+        ]
+      },
+      "exterior": {
+        "currentCondition": "good",
+        "repairOptions": [
+          { "name": "Paint & Landscaping", "cost": 6000, "timeAdded": 12, "roiBoost": 0.14 },
+          { "name": "Complete Curb Appeal", "cost": 12000, "timeAdded": 20, "roiBoost": 0.20 },
+          { "name": "Premium Exterior", "cost": 20000, "timeAdded": 35, "roiBoost": 0.28 }
+        ]
+      },
+      "bonus": {
+        "currentCondition": "opportunity",
+        "repairOptions": [
+          { "name": "Skip Tracing Magic", "cost": 500, "timeAdded": 2, "roiBoost": 0.05, "description": "Find motivated sellers faster" },
+          { "name": "Market Automation", "cost": 1000, "timeAdded": 3, "roiBoost": 0.08, "description": "Automate your deal pipeline" },
+          { "name": "Investor Network", "cost": 2000, "timeAdded": 5, "roiBoost": 0.12, "description": "Connect with cash buyers" }
+        ]
+      }
+    }
+  },
+  {
+    "id": 3,
+    "address": "432 Pine Court, Modesto, CA 95350",
+    "yearBuilt": 1979,
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1200,
+    "asIsValue": 195000,
+    "repairBudget": 35000,
+    "afterRepairValue": 275000,
+    "estimatedRepairTime": 75,
+    "description": "Cozy starter home with original character. Needs bathroom addition and kitchen modernization.",
+    "rooms": {
+      "kitchen": {
+        "currentCondition": "outdated",
+        "repairOptions": [
+          { "name": "Basic Refresh", "cost": 6000, "timeAdded": 12, "roiBoost": 0.16 },
+          { "name": "Mid-Range Remodel", "cost": 12000, "timeAdded": 18, "roiBoost": 0.26 },
+          { "name": "High-End Renovation", "cost": 20000, "timeAdded": 28, "roiBoost": 0.36 }
+        ]
+      },
+      "bathroom": {
+        "currentCondition": "poor",
+        "repairOptions": [
+          { "name": "Cosmetic Updates", "cost": 2500, "timeAdded": 6, "roiBoost": 0.08 },
+          { "name": "Full Renovation", "cost": 8000, "timeAdded": 14, "roiBoost": 0.18 },
+          { "name": "Add Second Bathroom", "cost": 15000, "timeAdded": 25, "roiBoost": 0.30 }
+        ]
+      },
+      "exterior": {
+        "currentCondition": "dated",
+        "repairOptions": [
+          { "name": "Paint & Landscaping", "cost": 3500, "timeAdded": 8, "roiBoost": 0.10 },
+          { "name": "Complete Curb Appeal", "cost": 7000, "timeAdded": 15, "roiBoost": 0.16 },
+          { "name": "Premium Exterior", "cost": 12000, "timeAdded": 22, "roiBoost": 0.22 }
+        ]
+      },
+      "bonus": {
+        "currentCondition": "opportunity",
+        "repairOptions": [
+          { "name": "Skip Tracing Magic", "cost": 500, "timeAdded": 2, "roiBoost": 0.05, "description": "Find motivated sellers faster" },
+          { "name": "Market Automation", "cost": 1000, "timeAdded": 3, "roiBoost": 0.08, "description": "Automate your deal pipeline" },
+          { "name": "Investor Network", "cost": 2000, "timeAdded": 5, "roiBoost": 0.12, "description": "Connect with cash buyers" }
+        ]
+      }
+    }
+  }
+]
